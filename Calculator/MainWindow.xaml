@@ -5,15 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator"
         mc:Ignorable="d"
-        Title="Calculator" Height="400" Width="280" MinHeight="300" MinWidth="200"
-        WindowStartupLocation="CenterScreen"
-        Icon="C:\Users\bycks\source\repos\Calculator\Calculator\Icons\calculator.ico"
+        Title="Calculator" Height="400" Width="280" MinHeight="500" MinWidth="340" 
+        WindowStartupLocation="CenterScreen" FontFamily="Segoe UI" 
         >
+        
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="80"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -26,73 +27,115 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="TempTextInput" Grid.Row="0" Grid.ColumnSpan="4" TextAlignment="Right" Margin="0" Text="" FontSize="18" IsReadOnly="True" BorderBrush="White"></TextBox>
-        <TextBox x:Name="TextInput" Grid.Row="1" Grid.ColumnSpan="4" TextAlignment="Right" Margin="0" Text="0" FontSize="24" IsReadOnly="True" BorderBrush="White"></TextBox>
+        <TextBox x:Name="TempTextInput" Grid.Row="1" Grid.ColumnSpan="4" TextAlignment="Right" Margin="0" Text="" 
+                 FontSize="22" IsReadOnly="True" BorderBrush="White" IsHitTestVisible="False" ></TextBox>
+        <TextBox x:Name="TextInput" Grid.Row="2" Grid.ColumnSpan="4" TextAlignment="Right" Margin="0" Text="0" 
+                 FontSize="50" IsReadOnly="True" BorderBrush="White" IsHitTestVisible="False" FontWeight="Medium" ></TextBox>
 
-        <Button x:Name="btn7" Content="7" Grid.Row="3" Grid.Column="0" FontSize="20" Margin="1" Click="regButtonClick" >
+        <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Viewbox Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right" Margin="0,0,10,0" >
+                <RadioButton GroupName="RadioGroup" x:Name="RadioButtonOn" Checked="RadioButtonOn_Checked" ></RadioButton>
+            </Viewbox>
+            <Viewbox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Margin="10,0,0,0">
+                <RadioButton GroupName="RadioGroup" Checked="RadioButtonOff_Checked" ></RadioButton>
+            </Viewbox>
+            <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="История"  HorizontalAlignment="Center" ></TextBlock>
+        </Grid>
+ 
+
+        <Button Click="historyButtonClick" Grid.Row="0" Grid.Column="3" HorizontalAlignment ="Right" Margin="0,0,5,0" MinHeight="35" MinWidth="35" 
+                MaxHeight="35" MaxWidth="35" Background="Transparent" BorderBrush="Transparent" 
+                x:Name="historyButton"
+                  >
+            <Button.Content>
+                <Image Source="C:\Users\bycks\Desktop\Calculator\Calculator\Icons\history.png"/>
+            </Button.Content>
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+
+        <Viewbox Grid.Row="0" Grid.Column="0" HorizontalAlignment ="Left" Margin="0,0,0,0" Height="33">
+            <CheckBox IsChecked="True" x:Name="writeHistoryButton" Checked="writeHistoryButton_Checked" Unchecked="writeHistoryButton_UnChecked">
+            </CheckBox>
+        </Viewbox>
+        
+        
+        <Button x:Name="btn7" Content="7" Grid.Row="4" Grid.Column="0" FontSize="20" Margin="1" Click="regButtonClick" >
            <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btn8" Content="8" Grid.Row="3" Grid.Column="1" FontSize="20" Margin="1" Click="regButtonClick">
+        <Button x:Name="btn8" Content="8" Grid.Row="4" Grid.Column="1" FontSize="20" Margin="1" Click="regButtonClick">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btn9" Content="9" Grid.Row="3" Grid.Column="2" FontSize="20" Margin="1" Click="regButtonClick">
+        <Button x:Name="btn9" Content="9" Grid.Row="4" Grid.Column="2" FontSize="20" Margin="1" Click="regButtonClick">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btn4" Content="4" Grid.Row="4" Grid.Column="0" FontSize="20" Margin="1" Click="regButtonClick">
+        <Button x:Name="btn4" Content="4" Grid.Row="5" Grid.Column="0" FontSize="20" Margin="1" Click="regButtonClick">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btn5" Content="5" Grid.Row="4" Grid.Column="1" FontSize="20" Margin="1" Click="regButtonClick">
+        <Button x:Name="btn5" Content="5" Grid.Row="5" Grid.Column="1" FontSize="20" Margin="1" Click="regButtonClick">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btn6" Content="6" Grid.Row="4" Grid.Column="2" FontSize="20" Margin="1" Click="regButtonClick">
+        <Button x:Name="btn6" Content="6" Grid.Row="5" Grid.Column="2" FontSize="20" Margin="1" Click="regButtonClick">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btn1" Content="1" Grid.Row="5" Grid.Column="0" FontSize="20" Margin="1" Click="regButtonClick">
+        <Button x:Name="btn1" Content="1" Grid.Row="6" Grid.Column="0" FontSize="20" Margin="1" Click="regButtonClick">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btn2" Content="2" Grid.Row="5" Grid.Column="1" FontSize="20" Margin="1"  Click="regButtonClick">
+        <Button x:Name="btn2" Content="2" Grid.Row="6" Grid.Column="1" FontSize="20" Margin="1"  Click="regButtonClick">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btn3" Content="3" Grid.Row="5" Grid.Column="2" FontSize="20" Margin="1" Click="regButtonClick">
+        <Button x:Name="btn3" Content="3" Grid.Row="6" Grid.Column="2" FontSize="20" Margin="1" Click="regButtonClick">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btn0" Content="0" Grid.Row="6" Grid.Column="0" FontSize="20" Margin="1" Click="regButtonClick">
+        <Button x:Name="btn0" Content="0" Grid.Row="7" Grid.Column="0" FontSize="20" Margin="1" Click="regButtonClick">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
@@ -100,68 +143,125 @@
             </Button.Resources>
         </Button>
 
-        <Button x:Name="btnPoint" Content="." Grid.Row="6" Grid.Column="1" FontSize="20" Margin="1" Click="btnPoint_Click">
+        <Button x:Name="btnPoint" Content="." Grid.Row="7" Grid.Column="1" FontSize="20" Margin="1" Click="btnPoint_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btnDivision" Content="/" Grid.Row="2" Grid.Column="3" FontSize="20" Margin="1" Click="btnOperation">
+        <Button x:Name="btnDivision" Content="/" Grid.Row="3" Grid.Column="3" FontSize="20" Margin="1" Click="btnOperation">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btnMultiplication" Content="*" Grid.Row="3" Grid.Column="3" FontSize="20" Margin="1" Click="btnOperation">
+        <Button x:Name="btnMultiplication" Content="*" Grid.Row="4" Grid.Column="3" FontSize="20" Margin="1" Click="btnOperation">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btnAddition" Content="+" Grid.Row="5" Grid.Column="3" FontSize="20" Margin="1" Click="btnOperation">
+        <Button x:Name="btnAddition" Content="+" Grid.Row="6" Grid.Column="3" FontSize="20" Margin="1" Click="btnOperation">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btnSubtraction" Content="-" Grid.Row="4" Grid.Column="3" FontSize="20" Margin="1" Click="btnOperation">
+        <Button x:Name="btnSubtraction" Content="-" Grid.Row="5" Grid.Column="3" FontSize="20" Margin="1" Click="btnOperation">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btnEquals" Content="=" Grid.Row="6" Grid.Column="2" FontSize="20" Margin="1" Grid.ColumnSpan="2" Click="btnEquals_Click">
+        <Button x:Name="btnEquals" Content="=" Grid.Row="7" Grid.Column="2" FontSize="20" Margin="1" Grid.ColumnSpan="2" Click="btnEquals_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btnBack" Content="←" Grid.Row="2" Grid.Column="0" FontSize="20" Margin="1" Click="btnBack_Click">
+        <Button x:Name="btnBack" Content="←" Grid.Row="3" Grid.Column="0" FontSize="20" Margin="1" Click="btnBack_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btnClearEntry" Content="CE" Grid.Row="2" Grid.Column="1" FontSize="20" Margin="1" Click="btnClearEntry_Click">
+        <Button x:Name="btnClearEntry" Content="CE" Grid.Row="3" Grid.Column="1" FontSize="20" Margin="1" Click="btnClearEntry_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="btnAllClear" Content="C" Grid.Row="2" Grid.Column="2" FontSize="20" Margin="1" Click="btnClearAll_Click" >
+        <Button x:Name="btnAllClear" Content="C" Grid.Row="3" Grid.Column="2" FontSize="20" Margin="1" Click="btnClearAll_Click" >
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>
                 </Style>
             </Button.Resources>
         </Button>
+
+
+        <Grid x:Name="historyGrid" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="5" Background="#FF202020" Opacity="0.96" Visibility="Collapsed" >
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Click="historyClearButtonClick" Grid.Row="3" Grid.Column="3" HorizontalAlignment ="Right" Margin="0,0,5,0" MinHeight="35" MinWidth="35" 
+                MaxHeight="35" MaxWidth="35" Background="Transparent" BorderBrush="Transparent" 
+                  >
+                <Button.Content>
+                    <Image Source="C:\Users\bycks\Desktop\Calculator\Calculator\Icons\trash-can.png"/>
+                </Button.Content>
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+            
+            <Button Click="historyBackButtonClick" Grid.Row="3" Grid.Column="0" HorizontalAlignment ="Left" Margin="5,0,0,0" MinHeight="38" MinWidth="38" 
+                MaxHeight="38" MaxWidth="38" Background="Transparent" BorderBrush="Transparent" 
+                  >
+                <Button.Content>
+                    <Image Source="C:\Users\bycks\Desktop\Calculator\Calculator\Icons\left_arrow.png"/>
+                </Button.Content>
+
+            </Button>
+
+            <TextBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" x:Name="IsEmptyHistoryBox" TextAlignment="Left" 
+                     FontSize="16" IsReadOnly="True" IsHitTestVisible="False" Text="Журнал операций пуст"
+                      Margin="0" BorderBrush="Transparent" Background="#FF202020" Foreground="White"
+                     Padding="5,4,0,0"
+                     >
+
+                <TextBox.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </TextBox.Resources>
+            </TextBox>
+
+            <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="HistoryBox" TextAlignment="Right" 
+                     FontSize="18" IsReadOnly="True"  Text="" Background="#FF202020"
+                     BorderBrush="Transparent" Foreground="White" Padding="0,4,5,0" TextWrapping="Wrap" 
+                     AcceptsReturn="True" VerticalScrollBarVisibility="Auto"
+                     >
+            </TextBox>
+        </Grid>
     </Grid>
 </Window>
